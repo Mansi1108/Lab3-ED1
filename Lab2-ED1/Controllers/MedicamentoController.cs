@@ -16,5 +16,12 @@ namespace Lab2_ED1.Controllers
             return View(Storage.Instance.miArbolMedicamentos.ObtenerLista());
         }
 
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
+        {
+            var name = collection["search"];
+            return View(MedicamentoModel.Filter(name));
+        }
+
     }
 }

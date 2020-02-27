@@ -22,5 +22,10 @@ namespace Lab2_ED1.Models
                 return this.Nombre.CompareTo(other.Nombre);
             }
         }
+
+        public static List<MedicamentoModel> Filter(string name)
+        {
+            return Storage.Instance.miArbolMedicamentos.ObtenerLista().Where(x => x.Nombre.ToLower().Contains(name.ToLower())).ToList();
+        }
     }
 }
