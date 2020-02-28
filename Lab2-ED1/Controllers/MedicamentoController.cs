@@ -12,9 +12,15 @@ namespace Lab2_ED1.Controllers
     public class MedicamentoController : Controller
     {
         // GET: Medicamento
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(Storage.Instance.miArbolMedicamentos.ObtenerLista());
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(Storage.Instance.miArbolMedicamentos.ObtenerLista().ToPagedList(pageNumber, pageSize));
         }
         
         [HttpPost]
