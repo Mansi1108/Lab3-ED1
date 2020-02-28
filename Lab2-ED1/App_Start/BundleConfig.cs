@@ -23,7 +23,7 @@ namespace Lab2_ED1
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/flaty.bootstrap.css",
                       "~/Content/site.css"));
         }
     }

@@ -3,12 +3,14 @@
     ViewBag.Title = "Index";
 }
 
-    <h2>Subir Archivo</h2>
+<h2>Subir Archivo</h2>
 @using (Html.BeginForm("SubirArchivo", "SubirArchivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div>
-        @Html.TextBox("file", "", new { type = "file" }) <br />
-        <input type="submit" value="SubirArchivo" />
-        @ViewBag.Message
-    </div>
+<div>
+    @Html.TextBox("file", "", new { type = "file" }) 
+    <br />
+    <br />
+    <input type="submit" value="SubirArchivo" class="btn btn-primary" />
+    @ViewBag.Message
+</div>
 }
