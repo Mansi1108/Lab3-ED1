@@ -18,16 +18,23 @@ namespace Lab2_ED1.Controllers
             {
                 page = 1;
             }
-            int pageSize = 10;
+            int pageSize = 25;
             int pageNumber = (page ?? 1);
             return View(Storage.Instance.miArbolMedicamentos.ObtenerLista().ToPagedList(pageNumber, pageSize));
         }
         
         [HttpPost]
-        public ActionResult Index(FormCollection collection)
+        public ActionResult Index(int? page, FormCollection collection)
         {
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
             var name = collection["search"];
-            return View(MedicamentoModel.Filter(name));
+            return View(MedicamentoModel.Filter(name).ToPagedList(pageNumber, pageSize));
         }
 
 
