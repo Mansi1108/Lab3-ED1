@@ -22,7 +22,7 @@ namespace Lab2_ED1.Controllers
             int pageNumber = (page ?? 1);
             return View(Storage.Instance.miArbolMedicamentos.ObtenerLista().ToPagedList(pageNumber, pageSize));
         }
-        
+
         [HttpPost]
         public ActionResult Index(int? page, FormCollection collection)
         {
@@ -52,12 +52,47 @@ namespace Lab2_ED1.Controllers
             try
             {
                 int pedido = int.Parse(collection["Existencia"]);
-                if (pedido > Storage.Instance.misMedicamentosExt[id - 1].Existencia)
-                {
+                int exist = Storage.Instance.misMedicamentosExt[id - 1].Existencia;
+                bool agregar = true;
 
+                if (exist == 0)
+                {
+                    ViewBag.Message = "No se encuentra en existencia este producto";
+                    agregar = false;
+                }
+                else if (pedido > Storage.Instance.misMedicamentosExt[id - 1].Existencia)
+                {
+                    ViewBag.Message = "Solo se agregaron: " + exist + " a la orden.";
+                    pedido = exist;
+                    exist = 0;
+                }
+                else
+                {
+                    if (pedido == exist)
+                    {
+                        exist = 0;
+                    }
+                    ViewBag.Message = pedido + " " + '"' + Storage.Instance.misMedicamentosExt[id - 1].Nombre + '"' + " agregados a la orden.";
+                    Storage.Instance.misMedicamentosExt[id - 1].Existencia -= pedido;
                 }
 
-                return View(Storage.Instance.misMedicamentosExt[id-1]);
+                if (exist == 0)
+                {
+                    Storage.Instance.misMedicamentosExt[id - 1].Existencia = 0;
+                    Storage.Instance.miArbolMedicamentos.Remove(Storage.Instance.misMedicamentosExt[id - 1]);
+                }
+                if (agregar)
+                {
+                    var nuevoPedido = new MedicamentoExtModel
+                    {
+                        Nombre = Storage.Instance.misMedicamentosExt[id - 1].Nombre,
+                        Precio = Storage.Instance.misMedicamentosExt[id - 1].Precio,
+                        Existencia = pedido
+                    };
+                    Storage.Instance.miPedido.Add(nuevoPedido);
+                }
+
+                return View(Storage.Instance.misMedicamentosExt[id - 1]);
             }
             catch
             {

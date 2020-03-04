@@ -21,5 +21,8 @@ namespace Lab2_ED1.Helpers
 
         public List<MedicamentoExtModel> misMedicamentosExt= new List<MedicamentoExtModel>();
         public Arbol<MedicamentoModel> miArbolMedicamentos = new Arbol<MedicamentoModel>();
+        public List<MedicamentoExtModel> miPedido = new List<MedicamentoExtModel>();
+
+        public ClienteModel miCliente = new ClienteModel();
     }
 }

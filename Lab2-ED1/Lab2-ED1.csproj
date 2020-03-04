@@ -127,13 +127,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\SubirArchivoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Storage.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\MedicamentoExtModel.cs" />
     <Compile Include="Models\MedicamentoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +181,8 @@
     <Content Include="Views\SubirArchivo\Index.cshtml" />
     <Content Include="Views\Medicamento\Index.cshtml" />
     <Content Include="Views\Medicamento\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
