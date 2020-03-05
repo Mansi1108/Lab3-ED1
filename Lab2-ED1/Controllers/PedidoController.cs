@@ -21,5 +21,12 @@ namespace Lab2_ED1.Controllers
             TempData["total"] = "$ "+ total;
             return View(Storage.Instance.miPedido);
         }
+
+        public ActionResult ConfirmarP(string tag)
+        {
+            Storage.Instance.miPedido.Clear();
+            return RedirectToAction("Index", "Medicamento");
+        }
+
     }
 }

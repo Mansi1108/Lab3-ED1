@@ -29,8 +29,11 @@ namespace Lab2_ED1.Controllers
             foreach (var item in Storage.Instance.miAsbastecer)
             {
                 var std = Storage.Instance.misMedicamentosExt.Where(s => s.id == item.id).FirstOrDefault();
-                std.Existencia = rnd.Next(1, 15);
-                Storage.Instance.miArbolMedicamentos.Add(std);
+                if (std.Existencia == 0)
+                {
+                    std.Existencia = rnd.Next(1, 15);
+                    Storage.Instance.miArbolMedicamentos.Add(std);
+                }
             }
             return RedirectToAction("Index");
         }
