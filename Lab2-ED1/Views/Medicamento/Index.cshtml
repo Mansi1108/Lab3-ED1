@@ -6,10 +6,13 @@
 
 @using (Html.BeginForm())
 {
-    <div class="row">
-        <input type="text" class="form-control" name="search" value="" placeholder="buscar..." />
+<div class="row">
+        <input type="text" class="form-control" name="search" value="" placeholder="Buscar..." />
         <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
+</div>
+<div class="row">
+    <input name="button" type="submit" value="Reabastecer" onclick='window.location = "@Url.Action("Reabastecer")";' class="btn btn-primary" />    
+</div>
 }
 
 <table class="table">
@@ -36,7 +39,6 @@
 <div>
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
     of @Model.PageCount
-    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
     @if (Model.HasPreviousPage)
     {
         @Html.ActionLink("<<", "Index", new { page = 1 })

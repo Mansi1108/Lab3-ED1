@@ -37,11 +37,31 @@ namespace Lab2_ED1.Controllers
             return View(MedicamentoModel.Filter(name).ToPagedList(pageNumber, pageSize));
         }
 
+        
 
         public ActionResult Edit(int id)
         {
             var std = Storage.Instance.misMedicamentosExt.Where(s => s.id == id).FirstOrDefault();
             return View(std);
+        }
+        [HttpPost]
+
+        public ActionResult Reabastecer(int id, FormCollection collection)
+        {
+            Random rdn = new Random();
+            int exisRdn = rdn.Next(0, 15);
+            int exist = Storage.Instance.misMedicamentosExt[id - 1].Existencia;
+            foreach (var item in collection)
+            {
+
+                if (exist == 0)
+                {
+                    Storage.Instance.misMedicamentosExt[id - 1].Existencia = exisRdn;
+                    Storage.Instance.miArbolMedicamentos.Add(Storage.Instance.misMedicamentosExt[id - 1]);
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         //
