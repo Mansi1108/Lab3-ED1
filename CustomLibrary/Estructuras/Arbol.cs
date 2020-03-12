@@ -48,6 +48,17 @@ namespace CustomLibrary.Estructuras
             InOrder(Raiz);
             return listaOrdenada;
         }
+        private bool Balanceado (Nodo<T> nodo)
+        {
+            if (Math.Abs(nodo.Charge)<= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // tres casos para eliminacion
         protected override void Delete(Nodo<T> nodo)
@@ -75,6 +86,7 @@ namespace CustomLibrary.Estructuras
                 nodo.Valor = temp.Valor;
             }
         }
+        
         // Metodo ayuda para el caso 3 de eliminacion
         private Nodo<T> Derecha(Nodo<T> nodo)
         {
@@ -166,5 +178,19 @@ namespace CustomLibrary.Estructuras
                 InOrder(nodo.Derecho);
             }
         }
+
+        private void RotDerecha (Nodo<T> nodo)
+        {
+            
+        }
+        private void RotIzquierda (Nodo<T> nodo)
+        {
+            
+        }
+        private void Rotacion (Nodo<T> nodo)
+        {
+
+        }
+        
     }
 }

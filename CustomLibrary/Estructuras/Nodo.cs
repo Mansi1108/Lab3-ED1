@@ -11,5 +11,6 @@ namespace CustomLibrary
         public Nodo<T> Izquierdo { get; set; }
         public Nodo<T> Derecho { get; set; }
         public T Valor { get; set; }
+        public int Charge {get; set; }
     }
 }
