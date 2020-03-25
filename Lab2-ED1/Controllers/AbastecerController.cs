@@ -12,9 +12,10 @@ namespace Lab2_ED1.Controllers
         // GET: Abastecer
         public ActionResult Index()
         {
+            Storage.Instance.miAsbastecer.Clear();
             foreach (var item in Storage.Instance.misMedicamentosExt)
             {
-                if (item.Existencia ==0)
+                if (item.Existencia == 0 && !Storage.Instance.miAsbastecer.Exists(x => x.Nombre == item.Nombre))
                 {
                     Storage.Instance.miAsbastecer.Add(item);
                 }
